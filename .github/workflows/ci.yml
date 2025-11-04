@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+  pull_request:
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.9' }
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt black ruff
+      # Style & lint
+      - run: black --check .
+      - run: ruff check .
+      # Sanity: make sure modules import
+      - run: python - <<'PY'
+import importlib
+for m in [
+    "src.utils.s3_io",
+    "src.data.spark_clean",
+    "src.data.peek",
+    "src.data.validate_clean",
+]:
+    importlib.import_module(m)
+print("Imports OK")
+PY

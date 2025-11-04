@@ -1,0 +1,50 @@
+cat > .gitignore <<'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+
+# IDE
+.vscode/
+
+# Data (keep only one tiny sample)
+data/**
+!data/README.md
+!data/clean/_union/sample_50.csv
+
+# Spark / Hadoop artifacts
+**/_SUCCESS
+**/.crc
+*.crc
+
+# Parquet (avoid in git; use S3 or LFS)
+*.parquet
+EOF
+cat > .gitignore <<'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.*
+
+# IDE
+.vscode/
+
+# Data (keep only one tiny sample)
+data/**
+!data/README.md
+!data/clean/_union/sample_50.csv
+
+# Spark / Hadoop artifacts
+**/_SUCCESS
+**/.crc
+*.crc
+
+# Parquet (avoid in git; use S3 or LFS)
+*.parquet
+EOF
